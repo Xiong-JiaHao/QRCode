@@ -8,6 +8,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -37,15 +38,18 @@ public class MainActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void scan(View view){
+        Log.e("tags","1");
         startActivityForResult(new Intent(MainActivity.this, CaptureActivity.class),0);
+        Log.e("tags","2");
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==RESULT_OK){
+        if(resultCode==RESULT_OK){
             Bundle bundle = data.getExtras();
             String res = bundle.getString("result");
+            Log.e("tags",res);
             mTvResult.setText(res);
         }
     }

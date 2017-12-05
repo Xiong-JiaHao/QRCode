@@ -1,0 +1,66 @@
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(revision )
++++ .idea/vcs.xml	(revision )
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision f9acf950597b2c82b878fd6c34e7c2c5e33d0bda)
++++ app/build.gradle	(revision )
+@@ -5,7 +5,7 @@
+     defaultConfig {
+         applicationId "com.xjh.gin.zxingtext"
+         minSdkVersion 16
+-        targetSdkVersion 26
++        targetSdkVersion 22
+         versionCode 1
+         versionName "1.0"
+         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+Index: app/src/main/java/com/xjh/gin/zxingtext/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/xjh/gin/zxingtext/MainActivity.java	(revision f9acf950597b2c82b878fd6c34e7c2c5e33d0bda)
++++ app/src/main/java/com/xjh/gin/zxingtext/MainActivity.java	(revision )
+@@ -8,6 +8,7 @@
+ import android.support.annotation.RequiresApi;
+ import android.support.v7.app.AppCompatActivity;
+ import android.os.Bundle;
++import android.util.Log;
+ import android.view.View;
+ import android.widget.CheckBox;
+ import android.widget.EditText;
+@@ -37,15 +38,18 @@
+ 
+     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+     public void scan(View view){
++        Log.e("tags","1");
+         startActivityForResult(new Intent(MainActivity.this, CaptureActivity.class),0);
++        Log.e("tags","2");
+     }
+ 
+     @Override
+     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+         super.onActivityResult(requestCode, resultCode, data);
+-        if(requestCode==RESULT_OK){
++        if(resultCode==RESULT_OK){
+             Bundle bundle = data.getExtras();
+             String res = bundle.getString("result");
++            Log.e("tags",res);
+             mTvResult.setText(res);
+         }
+     }
